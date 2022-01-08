@@ -1,0 +1,55 @@
+[
+    {
+        "Name": "JsonReader",
+        "Image": "JsonReader.png",
+        "Link": "",
+        "Video": "",
+        "Page": [
+            {
+                "Text": "During the first PSQ project(Subaquatic Secrets). The Designers wanted to adjust and change values of the game but didnt want to disturb any of the programmers, They have worked with JSON before during past Unity projects, and so suggested something to edit values in a JSON file."
+            },
+            {
+                "Text": "With the project being build in PSQs proprietary engine, there was no easy grab for a JSON reader, so i set out to create V1 of 'TenGine JSON Reader'. It supported only 3 variables('floats', 'ints', 'strings') which for that project was enough. But with my current project (TenGine World Builder), i needed more types of variables to store. And so V2 was created with full JSON support, to support this project."
+            }
+        ]
+    },
+    {
+        "Name": "Sound State Manager",
+        "Image": "SSM.png",
+        "Link": "",
+        "Video": "",
+        "Page": [
+            {
+                "Text": "During another PSQ game project i got the task of making a tool for music and sound effects. I instantly got ideas of how to implement a system that both the designers and programmers would enjoy to work with and not bother with any settings of the Unity audio system."
+            },
+            {
+                "Text": "With the use of a custom GUI in Unity and lots of time i managed to create a good system that the designers can easily add music, sound effects and ambient sounds. Than the programmer can implement sound effects easily with 2 Methods based on if they want it 3D positioned or 2D static."
+            },
+            {
+                "Text": "The music and ambient sound are both handle by themself internaly with several option the designer can choose from, from randomized clips to looping clips or even cutting them at a certain second. In my opinion and from my fellow Desiners and Programmers this tool was a succes."
+            }
+        ]
+    },
+    {
+        "Name": "Subaquatic Secrets",
+        "Image": "SubaquaticSecrets.jpg",
+        "Link": "https://portal.playgroundsquad.com/spelprojekt/group3-project-name/",
+        "Video": "https://player.vimeo.com/video/556212929?badge=0&autopause=0&player_id=0&app_id=58479",
+        "Page": [
+            {
+                "Text": "Subaquatic Secrets is a underwater exploration game, where you control a submersible through deep and vast oceans to discover dangers but also marvels of those deep oceans. The game has tasks that guide the player through the level, but loosely as to emphasize the exploration and non-restrictiveness of the levels."
+            }
+        ]
+    },
+    {
+        "Name": "Heliotrope",
+        "Image": "",
+        "Link": "https://portal.playgroundsquad.com/spelprojekt/group2-heliotrope/",
+        "Video": "https://www.youtube.com/embed/UMwJuAAky6M",
+        "Page": [
+            {
+                "Text": "Heliotrope is a third-person 3D puzzle platformer. While venturing into an imposingly beautiful canyon landscape, the player will be forced to use their cunning, creativity and coordination to reach their goal of gathering three enchanted gems that will unlock a mysterious tomb. To aid them in their quest, the player has the ability to conjure magical crystal pillars that grow out from the environment. These pillars act as multipurpose platforms that can help the player bypass traps, navigate the environment and outsmart puzzles."
+            }
+        ]
+    }
+]
