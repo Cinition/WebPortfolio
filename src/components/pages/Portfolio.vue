@@ -1,6 +1,5 @@
 <template>
     <span class="Title TitleFont">Portfolio</span>
-    <PortfolioProject v-if="this.Selected" :JsonData="ProjectSelected" @close="CloseProject()" />
     <div class="OverflowHidder"></div>
     <div class="PortfolioList">
         <div class="PortfolioItem" v-for="project in Data" :key="project">
