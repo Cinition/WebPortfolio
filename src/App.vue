@@ -9,7 +9,10 @@ export default {
   name: 'App',
   components: {
     Screen
-  }
+  },
+  created () {
+      document.title = "Cornee Nieuwenhuis";
+  },
 }
 </script>
 
