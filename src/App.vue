@@ -28,7 +28,6 @@ export default {
 
   body {
     height: 100vh;
-    width: 100vw;
     margin: 0;
     --ScrollbarWidth: calc(100vw - 100%);
   }

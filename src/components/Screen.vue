@@ -1,7 +1,7 @@
 <template>
     <div class="Screen">
         <Navbar @barData="StartTransition($event)"/>
-        <main>
+        <main v-bind:class="{Scroll : this.CurrentPage == 3}">
             <div class="Transition" :class="{StartAnimation: StartTransitioning, EndAnimation: EndTransitioning}"></div>
             <!-- Main -->
             <Homepage v-if="this.CurrentPage == 1"/>
