@@ -129,35 +129,13 @@ export default {
 
 <style scoped>
 
-    .DownTransition {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 0;
-        background-color: var(--PrimaryColor);
-        z-index: 9;
-    }
-
-    .DownStartAnimation {
-        transition: height 0.750s, top 0.750s;
-        height: 100%;
-        top: 0;
-    }
-
-    .DownEndAnimation {
-        transition: height 0.750s, top 0.750s;
-        height: 0;
-        top: 100%;
-    }
-
     .UpTransition {
         position: absolute;
-        top: 100%;
+        top: 0;
         left: 0;
         width: 100%;
         height: 0;
-        background-color: var(--PrimaryColor);
+        background-color: var(--SecondaryBackground);
         z-index: 9;
     }
 
@@ -168,6 +146,28 @@ export default {
     }
 
     .UpEndAnimation {
+        transition: height 0.750s, top 0.750s;
+        height: 0;
+        top: 100%;
+    }
+
+    .DownTransition {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        height: 0;
+        background-color: var(--SecondaryBackground);
+        z-index: 9;
+    }
+
+    .DownStartAnimation {
+        transition: height 0.750s, top 0.750s;
+        height: 100%;
+        top: 0;
+    }
+
+    .DownEndAnimation {
         transition: height 0.750s, top 0.750s;
         height: 0;
         top: 0;

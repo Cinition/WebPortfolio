@@ -74,7 +74,7 @@ export default {
         left: 0;
         width: 0;
         height: 100%;
-        background-color: var(--PrimaryColor);
+        background-color: var(--SecondaryBackground);
         z-index: 9;
     }
 

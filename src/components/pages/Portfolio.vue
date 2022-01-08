@@ -66,7 +66,7 @@ export default {
         height: 150px;
         width: calc(100% - 17px);
         background-color: var(--PrimaryBackground);
-        z-index: 8;
+        z-index: 7;
     }
 
     .PortfolioList {

@@ -46,7 +46,7 @@ export default {
     left: 300px;
     font-size: 75px;
     color: var(--PrimaryColor);
-    z-index: 9;
+    z-index: 8;
   }
 
   /* Firefox ScrollBar Settings */
