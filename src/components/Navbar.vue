@@ -18,14 +18,14 @@
             <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/DoggoBuoy"><TwitterIcon class="icon"/></a>
         </div>
     </div>
-    <div class="PhoneNavbar" if="this.screenWidth <= 850">
+    <div class="PhoneNavbar" v-if="this.screenWidth <= 850">
         <!-- Logo -->
         <img src="../assets/Logo.svg" alt="Logo">
         <div class="Dropdown" v-bind:class="{Active: this.dropDown == true}" v-on:click="this.dropDown = !this.dropDown">
             <ChevronUpIcon/>
         </div>
     </div>
-    <div class="DropdownList" v-bind:class="{Active: this.dropDown == true}" if="this.screenWidth <= 850">
+    <div class="DropdownList" v-bind:class="{Active: this.dropDown == true}" v-if="this.screenWidth <= 850">
         <p class="TextFont" v-for="title in titles" :key="title" v-on:mouseenter="this.MouseEnter({title})" :class="{Active: title == this.current}" v-on:click="Click({title})">{{title}}</p>
     </div>
 </template>
@@ -47,7 +47,7 @@ export default {
             hovering: 'Homepage',
             barData: { Homepage: false, AboutMe: false, Portfolio: false},
             titles: ["Homepage", "About Me", "Portfolio"],
-            screenWidth: 0,
+            screenWidth: Math.max(document.body.scrollWidth,document.documentElement.scrollWidth,document.body.offsetWidth,document.documentElement.offsetWidth,document.documentElement.clientWidth),
             dropDown: false
         }
     },

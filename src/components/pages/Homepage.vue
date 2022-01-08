@@ -21,7 +21,7 @@ export default {
     data() {
         return {
             SmallerScreen: false,
-            screenWidth: 0,
+            screenWidth: Math.max(document.body.scrollWidth,document.documentElement.scrollWidth,document.body.offsetWidth,document.documentElement.offsetWidth,document.documentElement.clientWidth),
         }
     },
     methods: {
