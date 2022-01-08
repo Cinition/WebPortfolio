@@ -35,11 +35,8 @@ export default {
             );
         }
     },
-    created () {
+    mounted () {
         window.addEventListener("resize", this.ResizeHandler);
-    },
-    unmounted() {
-        window.removeEventListener("resize", this.ResizeHandler);
     }
 }
 </script>

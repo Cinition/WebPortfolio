@@ -65,11 +65,8 @@ export default {
             console.log(this.screenWidth)
         }
     },
-    created () {
+    mounted () {
         window.addEventListener("resize", this.ResizeHandler);
-    },
-    unmounted() {
-        window.removeEventListener("resize", this.ResizeHandler);
     }
 }
 </script>

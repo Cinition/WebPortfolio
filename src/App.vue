@@ -45,8 +45,9 @@ export default {
     .Title {
         position: absolute;
         top: 25px;
-        left: 300px;
-        font-size: 75px;
+        width: 100%;
+        text-align: center;
+        font-size: 60px;
         color: var(--PrimaryColor);
         z-index: 8;
     }

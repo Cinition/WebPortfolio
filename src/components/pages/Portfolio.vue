@@ -1,15 +1,17 @@
 <template>
-    <span class="Title TitleFont">Portfolio</span>
-    <div class="OverflowHidder"></div>
-    <div class="PortfolioList">
-        <div class="PortfolioItem" v-for="project in Data" :key="project">
-            <div class="PortfolioImage">
+    <span class="Title TitleFont">Some of my work</span>
+    <div class="OverflowHidder" v-bind:class="{Shadow: this.atTop == false}"></div>
+    <div class="PortfolioList" id="List">
+        <div class="PortfolioItem" v-for="project in Data" :key="project" v-bind:class="{md : this.screenWidth <= 1500}">
+            <p v-if="this.screenWidth <= 1500" class="PortfolioTitle TitleFont">{{project.Name}}</p>
+            <div class="PortfolioImage" v-bind:class="{md : this.screenWidth <= 1500}">
                 <div class="PortfolioVideo" v-if="project.Video != ''">
                     <iframe :src="project.Video" :title="project.Name" frameborder="0"></iframe>
                 </div>
                 <img v-else-if="project.Image != ''" :src="require('@/assets/PortfolioImg/'+project.Image)">
             </div>
-            <div class="PortfolioText TextFont">
+            <div class="PortfolioText TextFont" v-bind:class="{md : this.screenWidth <= 1500}">
+                <p v-if="this.screenWidth > 1500" class="PortfolioTitle TitleFont">{{project.Name}}</p>
                 <p v-for="Page in project.Page" :key="Page">
                     {{Page.Text}}
                 </p>
@@ -27,24 +29,30 @@ export default {
     data() {
         return {
             atTop: true,
-            Data: PortfolioData
+            Data: PortfolioData,
+            screenWidth: Math.max(document.body.scrollWidth,document.documentElement.scrollWidth,document.body.offsetWidth,document.documentElement.offsetWidth,document.documentElement.clientWidth)
         }
     },
     methods: {
         handleScroll () {
-            if (window.scrollY > 0) {
+            if (document.getElementById("List").scrollTop > 0) {
                 this.atTop = false;
             } else {
                 this.atTop = true;
             }
-            console.log(this.atTop)
+        },
+        ResizeHandler() {
+            this.screenWidth = Math.max(
+            document.body.scrollWidth,
+            document.documentElement.scrollWidth,
+            document.body.offsetWidth,
+            document.documentElement.offsetWidth,
+            document.documentElement.clientWidth,
+            );
         }
     },
-    created () {
-        window.addEventListener('scroll', this.handleScroll);
-    },
-    unmounted () {
-        window.removeEventListener('scroll', this.handleScroll);
+    mounted () {
+        window.addEventListener("resize", this.ResizeHandler);
     }
 }
 </script>
@@ -54,12 +62,17 @@ export default {
         position: relative;
     }
     .OverflowHidder::after{
+        transition: box-shadow 0.25s;
+        box-shadow: 0;
         content: "";
         position: absolute;
         height: 150px;
         width: calc(100% - 17px);
         background-color: var(--PrimaryBackground);
         z-index: 7;
+    }
+    .OverflowHidder.Shadow::after {
+        box-shadow: 0px 10px 10px 5px var(--DropShadow);
     }
 
     .PortfolioList {
@@ -77,15 +90,24 @@ export default {
         width: 80%;
         display: flex;
         flex-direction: row;
-        justify-content: space-around;
+        justify-content: space-between;
         margin-bottom: 100px;
     }
     .PortfolioItem:nth-child(even) {
         flex-direction: row-reverse;
     }
 
+    .PortfolioItem.md {
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 100px;
+    }
+
     .PortfolioImage {
-        width: 40%;
+        width: 50%;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -93,6 +115,10 @@ export default {
     .PortfolioImage img {
         width: 100%;
         border: 2px solid var(--PrimaryColor);
+    }
+    .PortfolioImage.md {
+        width: 80%;
+        margin-bottom: 25px;
     }
 
     .PortfolioVideo {
@@ -127,6 +153,16 @@ export default {
     }
     .PortfolioText a:hover {
         text-decoration: underline;
+    }
+    .PortfolioText.md {
+        width: 80%;
+    }
+
+    .PortfolioTitle {
+        width: 100%;
+        text-align: center;
+        font-size: 40px;
+        color: var(--PrimaryColor);
     }
 
 </style>
