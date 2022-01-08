@@ -1,8 +1,9 @@
 <template>
-    <div class="Screen">
+    <div class="Screen" v-bind:class="{Phone: this.screenWidth <= 850}">
         <Navbar @barData="StartTransition($event)"/>
-        <main v-bind:class="{Scroll : this.CurrentPage == 3}">
-            <div class="Transition" :class="{StartAnimation: StartTransitioning, EndAnimation: EndTransitioning}"></div>
+        <main v-bind:class="{Phone: this.screenWidth <= 850}">
+            <div class="Transition" v-if="this.screenWidth > 850" :class="{StartAnimation: StartTransitioning, EndAnimation: EndTransitioning}"></div>
+            <div class="PhoneTransition" v-else :class="{StartPhoneAnimation: StartTransitioning, EndPhoneAnimation: EndTransitioning}"></div>
             <!-- Main -->
             <Homepage v-if="this.CurrentPage == 1"/>
             <AboutMe v-if="this.CurrentPage == 2"/>
@@ -29,7 +30,8 @@ export default {
         return {
             CurrentPage : 1, // 1 = Mainpage, 2 = About Me, 3 = Portfolio
             StartTransitioning: false,
-            EndTransitioning: false
+            EndTransitioning: false,
+            screenWidth: 0
         }
     },
     methods: {
@@ -51,7 +53,23 @@ export default {
             } else if (data.Portfolio == true) {
                 this.CurrentPage = 3;
             }
+        },
+        ResizeHandler() {
+            this.screenWidth = Math.max(
+            document.body.scrollWidth,
+            document.documentElement.scrollWidth,
+            document.body.offsetWidth,
+            document.documentElement.offsetWidth,
+            document.documentElement.clientWidth,
+            );
+            console.log(this.screenWidth)
         }
+    },
+    created () {
+        window.addEventListener("resize", this.ResizeHandler);
+    },
+    unmounted() {
+        window.removeEventListener("resize", this.ResizeHandler);
     }
 }
 </script>
@@ -61,11 +79,17 @@ export default {
         display: flex;
         flex-direction: row;
     }
+    .Screen.Phone {
+        flex-direction: column;
+    }
 
     main {
         position: relative;
         width: 100%;
         height: 100vh;
+    }
+    main.Phone {
+        height: calc(100vh - 100px);
     }
 
     .Transition {
@@ -90,4 +114,25 @@ export default {
         left: 100%
     }
 
+    .PhoneTransition {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 0;
+        background-color: var(--SecondaryBackground);
+        z-index: 9;
+    }
+
+    .StartPhoneAnimation {
+        transition: height 0.750s, top 0.750s;
+        height: 100%;
+        top: 0;
+    }
+
+    .EndPhoneAnimation {
+        transition: height 0.750s, top 0.750s;
+        height: 0;
+        top: 100%
+    }
 </style>

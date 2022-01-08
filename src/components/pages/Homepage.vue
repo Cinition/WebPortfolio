@@ -6,7 +6,7 @@
                 <span class="Name">Cornee Nieuwenhuis</span>
                 <span class="Titles">Tools Engineer - Graphics Engineer</span>
             </div>
-            <div class="IntroList" v-else-if="this.screenWidth >= 600">
+            <div class="IntroList" v-else>
                 <span class="Intro md">Hi, <br> I am</span>
                 <span class="Name md">Cornee</span>
                 <span class="Titles md">Tools & Graphics <br> Engineer</span>

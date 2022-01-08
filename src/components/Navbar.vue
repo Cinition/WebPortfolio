@@ -1,5 +1,5 @@
 <template>
-    <div class="Navbar">
+    <div class="Navbar" v-if="this.screenWidth > 850">
         <!-- Logo -->
         <img src="../assets/Logo.svg" alt="Logo">
 
@@ -18,24 +18,37 @@
             <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/DoggoBuoy"><TwitterIcon class="icon"/></a>
         </div>
     </div>
+    <div class="PhoneNavbar" if="this.screenWidth <= 850">
+        <!-- Logo -->
+        <img src="../assets/Logo.svg" alt="Logo">
+        <div class="Dropdown" v-bind:class="{Active: this.dropDown == true}" v-on:click="this.dropDown = !this.dropDown">
+            <ChevronUpIcon/>
+        </div>
+    </div>
+    <div class="DropdownList" v-bind:class="{Active: this.dropDown == true}" if="this.screenWidth <= 850">
+        <p class="TextFont" v-for="title in titles" :key="title" v-on:mouseenter="this.MouseEnter({title})" :class="{Active: title == this.current}" v-on:click="Click({title})">{{title}}</p>
+    </div>
 </template>
 <script>
 
-import { GithubIcon, LinkedinIcon, TwitterIcon } from '@zhuowenli/vue-feather-icons';
+import { GithubIcon, LinkedinIcon, TwitterIcon, ChevronUpIcon } from '@zhuowenli/vue-feather-icons';
 
 export default {
     name: 'Navbar',
     components : {
-        GithubIcon, 
-        LinkedinIcon, 
-        TwitterIcon
+        GithubIcon,
+        LinkedinIcon,
+        TwitterIcon,
+        ChevronUpIcon
     },
     data() {
         return {
             current: "Homepage",
             hovering: 'Homepage',
             barData: { Homepage: false, AboutMe: false, Portfolio: false},
-            titles: ["Homepage", "About Me", "Portfolio"]
+            titles: ["Homepage", "About Me", "Portfolio"],
+            screenWidth: 0,
+            dropDown: false
         }
     },
     methods: {
@@ -49,7 +62,7 @@ export default {
 
             if (this.current == ClickedTitle.title)
                 return;
-
+            this.dropDown = false;
             this.barData.Homepage = false;
             this.barData.AboutMe = false;
             this.barData.Portfolio = false;
@@ -64,10 +77,85 @@ export default {
             this.current = ClickedTitle.title;
             this.$emit('barData', this.barData);
         },
+        ResizeHandler() {
+            this.screenWidth = Math.max(
+            document.body.scrollWidth,
+            document.documentElement.scrollWidth,
+            document.body.offsetWidth,
+            document.documentElement.offsetWidth,
+            document.documentElement.clientWidth,
+            );
+        }
+    },
+    created () {
+        window.addEventListener("resize", this.ResizeHandler);
+    },
+    unmounted() {
+        window.removeEventListener("resize", this.ResizeHandler);
     }
 }
 </script>
 <style scoped>
+
+    .PhoneNavbar {
+        position: relative;
+        width: 100%;
+        height: 100px;
+        background-color: var(--SecondaryBackground);
+        box-shadow: 0px 10px 10px 5px var(--DropShadow);
+        z-index: 10;
+    }
+    .PhoneNavbar img {
+        height: 80px;
+        width: 80px;
+        margin-top: 10px;
+        margin-left: calc(50% - 40px);
+    }
+
+    .Dropdown {
+        transition: transform 0.5s;
+        transition-timing-function: ease-in-out;
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        height: 60px;
+        width: 60px;
+    }
+    .Dropdown svg {
+        height: 100%;
+        width: 100%;
+        color: var(--PrimaryColor);
+    }
+    .Dropdown:hover {
+        cursor: pointer;
+    }
+
+    .Dropdown.Active {
+        transform: rotate(540deg);
+    }
+
+    .DropdownList {
+        position: absolute;
+        background-color: var(--PrimaryColor);
+        z-index: 9;
+        width: 100%;
+        transition: top 0.5s;
+        top: -300px;
+    }
+    .DropdownList.Active {
+        top: 100px;
+    }
+    .DropdownList p {
+        text-align: center;
+        color: var(--Text);
+        font-size: 30px;
+        margin: 0;
+        padding: 30px 0;
+    }
+    .DropdownList p.Active {
+        color: var(--PrimaryColor);
+        background-color: var(--PrimaryBackground);
+    }
 
     .Navbar {
         height: 100vh;
@@ -81,7 +169,7 @@ export default {
         z-index: 10;
     }
 
-    img {
+    .Navbar img {
         height: 100px;
         width: 100px;
         padding: 25px;
