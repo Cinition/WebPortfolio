@@ -5,7 +5,7 @@
             <div class="Transition" v-if="this.screenWidth > 850" :class="{StartAnimation: StartTransitioning, EndAnimation: EndTransitioning}"></div>
             <div class="PhoneTransition" v-else :class="{StartPhoneAnimation: StartTransitioning, EndPhoneAnimation: EndTransitioning}"></div>
             <!-- Main -->
-            <Homepage v-if="this.CurrentPage == 1"/>
+            <Homepage :DoAnimation="this.DoAnimation" v-if="this.CurrentPage == 1"/>
             <AboutMe v-if="this.CurrentPage == 2"/>
             <Portfolio v-if="this.CurrentPage == 3"/>
         </main>
@@ -29,6 +29,7 @@ export default {
     data() {
         return {
             CurrentPage : 1, // 1 = Mainpage, 2 = About Me, 3 = Portfolio
+            DoAnimation : false,
             StartTransitioning: false,
             EndTransitioning: false,
             screenWidth: Math.max(document.body.scrollWidth,document.documentElement.scrollWidth,document.body.offsetWidth,document.documentElement.offsetWidth,document.documentElement.clientWidth)
@@ -65,8 +66,14 @@ export default {
             console.log(this.screenWidth)
         }
     },
+    beforeMount() {
+        this.DoAnimation = true;
+    },
     mounted () {
         window.addEventListener("resize", this.ResizeHandler);
+    },
+    updated() {
+        this.DoAnimation = false;
     }
 }
 </script>

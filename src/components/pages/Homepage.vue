@@ -8,8 +8,13 @@
             </div>
             <div class="IntroList" v-else>
                 <span class="Intro" v-bind:class="{Phone : this.screenWidth <= 500, Tablet : this.screenWidth <= 1500 && this.screenWidth > 500}">Hi, <br> I am</span>
-                <span class="Name" v-bind:class="{Phone : this.screenWidth <= 500, Tablet : this.screenWidth <= 1500 && this.screenWidth > 500}">Cornee</span>
-                <span class="Titles" v-bind:class="{Phone : this.screenWidth <= 500, Tablet : this.screenWidth <= 1500 && this.screenWidth > 500}">Tools & Graphics <br> Engineer</span>
+                <div class="RelativeHolder" style="z-index: 4; padding-bottom:15px">
+                    <div class="AnimationSwish" v-bind:class="{StartAnimation: this.AnimationHolder.NameSwishStart, EndAnimation: this.AnimationHolder.NameSwishEnd}"></div>
+                    <span class="Name" v-bind:class="{Phone : this.screenWidth <= 500, Tablet : this.screenWidth <= 1500 && this.screenWidth > 500, Intro: !this.NameTextVisible}">Cornee</span>
+                </div>
+                <div class="RelativeHolder">
+                    <span class="Titles" v-bind:class="{Phone : this.screenWidth <= 500, Tablet : this.screenWidth <= 1500 && this.screenWidth > 500, Visible : this.TitlesTextVisible}">Tools & Graphics <br> Engineer</span>
+                </div>
             </div>
         </div>
     </div>
@@ -18,10 +23,16 @@
 
 export default {
     name: 'Homepage',
+    props: {
+        DoAnimation: Boolean
+    },
     data() {
         return {
             SmallerScreen: false,
+            NameTextVisible: false,
+            TitlesTextVisible: false,
             screenWidth: Math.max(document.body.scrollWidth,document.documentElement.scrollWidth,document.body.offsetWidth,document.documentElement.offsetWidth,document.documentElement.clientWidth),
+            AnimationHolder: {NameSwishStart: false, NameSwishEnd: false, }
         }
     },
     methods: {
@@ -33,9 +44,26 @@ export default {
             document.documentElement.offsetWidth,
             document.documentElement.clientWidth,
             );
+        },
+        IntroAnimation() {
+            setTimeout(() => {
+                this.AnimationHolder.NameSwishStart = true;
+                setTimeout(() => {
+                    this.AnimationHolder.NameSwishStart = false; 
+                    this.NameTextVisible = true; 
+                    this.AnimationHolder.NameSwishEnd = true; 
+                    setTimeout(() => {
+                        this.AnimationHolder.NameSwishEnd = false;
+                        this.TitlesTextVisible = true;
+                    }, 750)
+                }, 750)
+            }, 100)
         }
     },
     mounted () {
+        if (this.DoAnimation) {
+            this.IntroAnimation();
+        }
         window.addEventListener("resize", this.ResizeHandler);
     }
 }
@@ -43,6 +71,7 @@ export default {
 <style scoped>
 
     .Vertical {
+        overflow: hidden;
         height: 100%;
         width: 100%;
         display: flex;
@@ -73,10 +102,33 @@ export default {
         line-height: 60px;
     }
 
+    .RelativeHolder {
+        position: relative;
+        width: 100%;
+        background-color: var(--PrimaryBackground);
+    }
+
+    .AnimationSwish {
+        position: absolute;
+        height: calc(100% + 15px);
+        left: calc(50% - 100vh);
+        width: 0;
+        background-color: var(--PrimaryColor);
+        z-index: 5;
+    }
+    .AnimationSwish.StartAnimation {
+        transition: width 0.75s;
+        width: 200vh;
+    }
+    .AnimationSwish.EndAnimation {
+        transition: width 0.75s, left 0.75s;
+        width: 0vh;
+        left: calc(50% + 100vh);
+    }
+
     .Name {
         line-height: 110px;
         font-size: 130px;
-        position: relative;
         color: var(--PrimaryColor);
         padding-bottom: 20px;
     }
@@ -99,12 +151,21 @@ export default {
     .Name.Tablet {
         width: 435px;
     }
+    .Name.Intro {
+        color: var(--PrimaryBackground);
+    }
+    .Name.Intro::after {
+        background-color: var(--PrimaryBackground);
+    }
 
     .Titles {
+        width: 100%;
+        position: absolute;
         margin-top: 20px;
         font-size: 50px;
         text-align: center;
-        color: var(--Text);
+        top: -100px;
+        color: #dadada00;
     }
     .Titles.Phone {
         margin-left: auto;
@@ -115,6 +176,11 @@ export default {
         margin-left: auto;
         margin-right: auto;
         font-size: 40px;
+    }
+    .Titles.Visible {
+        transition: top 0.75s, color 1.5s;
+        color: var(--Text);
+        top: 0;
     }
 
 </style>
