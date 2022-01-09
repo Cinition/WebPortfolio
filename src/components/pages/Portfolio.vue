@@ -1,16 +1,16 @@
 <template>
-    <span class="Title TitleFont">Some of my work</span>
-    <div class="OverflowHidder" v-bind:class="{Shadow: this.atTop == false}"></div>
-    <div class="PortfolioList" id="List">
-        <div class="PortfolioItem" v-for="project in Data" :key="project" v-bind:class="{md : this.screenWidth <= 1500}">
-            <p v-if="this.screenWidth <= 1500" class="PortfolioTitle TitleFont">{{project.Name}}</p>
+    <span class="Title TitleFont" v-bind:class="{Phone: this.screenWidth <= 500}">Some of my work</span>
+    <div class="OverflowHidder" v-bind:class="{Shadow: this.atTop == false, Phone: this.screenWidth <= 500}"></div>
+    <div class="PortfolioList" id="List" v-bind:class="{Phone: this.screenWidth <= 500}">
+        <div class="PortfolioItem" v-for="project in Data" :key="project" v-bind:class="{md: this.screenWidth <= 1500 , Phone: this.screenWidth <= 500}">
+            <p v-if="this.screenWidth <= 1500" class="PortfolioTitle TitleFont" v-bind:class="{Phone: this.screenWidth <= 500}">{{project.Name}}</p>
             <div class="PortfolioImage" v-bind:class="{md : this.screenWidth <= 1500}">
                 <div class="PortfolioVideo" v-if="project.Video != ''">
                     <iframe :src="project.Video" :title="project.Name" frameborder="0"></iframe>
                 </div>
                 <img v-else-if="project.Image != ''" :src="require('@/assets/PortfolioImg/'+project.Image)">
             </div>
-            <div class="PortfolioText TextFont" v-bind:class="{md : this.screenWidth <= 1500}">
+            <div class="PortfolioText TextFont" v-bind:class="{md : this.screenWidth <= 1500, Phone: this.screenWidth <= 500}">
                 <p v-if="this.screenWidth > 1500" class="PortfolioTitle TitleFont">{{project.Name}}</p>
                 <p v-for="Page in project.Page" :key="Page">
                     {{Page.Text}}
@@ -58,6 +58,10 @@ export default {
 </script>
 <style scoped>
 
+    .Title.Phone {
+        font-size: 40px;
+    }
+
     .OverflowHidder {
         position: relative;
     }
@@ -70,6 +74,9 @@ export default {
         width: calc(100% - 17px);
         background-color: var(--PrimaryBackground);
         z-index: 7;
+    }
+    .OverflowHidder.Phone::after{
+        height: 100px;
     }
     .OverflowHidder.Shadow::after {
         box-shadow: 0px 10px 10px 5px var(--DropShadow);
@@ -84,6 +91,10 @@ export default {
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+    .PortfolioList.Phone {
+        padding-top: 100px;
+        height: calc(100% - 100px);
     }
 
     .PortfolioItem {
@@ -104,6 +115,9 @@ export default {
         align-items: center;
         justify-content: center;
         margin-bottom: 100px;
+    }
+    .PortfolioItem.Phone {
+        width: 95%;
     }
 
     .PortfolioImage {
@@ -143,6 +157,9 @@ export default {
         width: 40%;
         color: var(--Text);
         font-size: 18px;
+    }
+    .PortfolioText.Phone {
+        font-size: 16px;
     }
     .PortfolioText p {
         text-align: justify;

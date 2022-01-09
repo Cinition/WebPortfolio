@@ -44,7 +44,7 @@ export default {
     data() {
         return {
             current: "Homepage",
-            hovering: 'Homepage',
+            hovering: '',
             barData: { Homepage: false, AboutMe: false, Portfolio: false},
             titles: ["Homepage", "About Me", "Portfolio"],
             screenWidth: Math.max(document.body.scrollWidth,document.documentElement.scrollWidth,document.body.offsetWidth,document.documentElement.offsetWidth,document.documentElement.clientWidth),
