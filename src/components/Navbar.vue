@@ -100,16 +100,18 @@ export default {
     .PhoneNavbar {
         position: relative;
         width: 100%;
-        height: 100px;
+        height: 10vh;
+        min-height: 70px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         background-color: var(--SecondaryBackground);
         box-shadow: 0px 10px 10px 5px var(--DropShadow);
         z-index: 10;
     }
     .PhoneNavbar img {
-        height: 80px;
-        width: 80px;
-        margin-top: 10px;
-        margin-left: calc(50% - 40px);
+        position: relative;
+        height: 80%;
     }
 
     .Dropdown {
@@ -117,9 +119,8 @@ export default {
         transition-timing-function: ease-in-out;
         position: absolute;
         right: 20px;
-        top: 20px;
-        height: 60px;
-        width: 60px;
+        top: 20%;
+        height: 60%;
     }
     .Dropdown svg {
         height: 100%;

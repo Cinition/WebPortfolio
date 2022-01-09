@@ -7,9 +7,9 @@
                 <span class="Titles">Tools Engineer - Graphics Engineer</span>
             </div>
             <div class="IntroList" v-else>
-                <span class="Intro md">Hi, <br> I am</span>
-                <span class="Name md">Cornee</span>
-                <span class="Titles md">Tools & Graphics <br> Engineer</span>
+                <span class="Intro" v-bind:class="{Phone : this.screenWidth <= 500, Tablet : this.screenWidth <= 1500 && this.screenWidth > 500}">Hi, <br> I am</span>
+                <span class="Name" v-bind:class="{Phone : this.screenWidth <= 500, Tablet : this.screenWidth <= 1500 && this.screenWidth > 500}">Cornee</span>
+                <span class="Titles" v-bind:class="{Phone : this.screenWidth <= 500, Tablet : this.screenWidth <= 1500 && this.screenWidth > 500}">Tools & Graphics <br> Engineer</span>
             </div>
         </div>
     </div>
@@ -68,6 +68,10 @@ export default {
         font-size: 100px;
         color: var(--Text);
     }
+    .Intro.Phone {
+        font-size: 50px;
+        line-height: 60px;
+    }
 
     .Name {
         line-height: 110px;
@@ -86,7 +90,13 @@ export default {
         background-color: var(--PrimaryColor);
         border-radius: 5px;
     }
-    .Name.md {
+    .Name.Phone {
+        line-height: 50px;
+        font-size: 65px;
+        width: 215px;
+        padding-bottom: 20px;
+    }
+    .Name.Tablet {
         width: 435px;
     }
 
@@ -96,7 +106,12 @@ export default {
         text-align: center;
         color: var(--Text);
     }
-    .Titles.md {
+    .Titles.Phone {
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 25px;
+    }
+    .Titles.Tablet {
         margin-left: auto;
         margin-right: auto;
         font-size: 40px;

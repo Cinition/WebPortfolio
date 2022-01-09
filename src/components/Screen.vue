@@ -86,7 +86,8 @@ export default {
         height: 100vh;
     }
     main.Phone {
-        height: calc(100vh - 100px);
+        height: 90vh;
+        max-height: calc(100vh - 70px);
     }
 
     .Transition {

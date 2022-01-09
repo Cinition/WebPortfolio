@@ -13,16 +13,15 @@
                 and how to move futher into this market.
             </p>
             <p class="PhoneText TextFont">
-                I am an aspiring Application/Software Engineer that wants to make software for designer 
+                I am an aspiring Tool & Graphics Engineer that wants to make software for designer 
                 and artist to make their jobs better even if its just a little bit. 
                 To do that i have these skills to make those applications a reality.
             </p>
             <p class="PhoneTitle TitleFont">My Skills</p>
             <p class="PhoneText TextFont">
-                Hi There! I'm am Cornee Nieuwenhuis as you might have noticed by the homepage. 
-                I'm from The Netherlands but have recently moved to Sweden for my current school PSQ. 
-                At PSQ i have learned allot abot, not only game programming but also my social skills 
-                and how to move futher into this market.
+                Over my years of learning, moving and commumicating i have learned quite and array of languages.
+                Both programming languages and human languages. I'm quite proud over the amount of them, 
+                and as such will be focusing now more on becoming greater in every one them
             </p>
             
             <div class="SkillListingDivider">
@@ -44,10 +43,8 @@
             
             <p class="PhoneText TextFont">
                 <br>
-                Hi There! I'm am Cornee Nieuwenhuis as you might have noticed by the homepage. 
-                I'm from The Netherlands but have recently moved to Sweden for my current school PSQ. 
-                At PSQ i have learned allot abot, not only game programming but also my social skills 
-                and how to move futher into this market.
+                Here are some off my skills / strengths, while it is quite a display of skill i always seek to improve myself,
+                not only as a developer but also as a person. And im always willing to prove myself of these skills no matter what the barrier could be.
             </p>
             
             <div class="SkillListingDivider">
@@ -70,10 +67,10 @@
                         <p class="TextFont">
                             Hi There! I'm am Cornee Nieuwenhuis as you might have noticed by the homepage. 
                             I'm from The Netherlands but have recently moved to Sweden for my current school PSQ. 
-                            At PSQ i have learned allot abot, not only game programming but also my social skills 
+                            At PSQ i have learned alot about, not only game programming but also my social skills 
                             and how to move futher into this market.
                             <br><br>
-                            I am an aspiring Application/Software Engineer that wants to make software for designer 
+                            I am an aspiring Tool & Graphics Engineer that wants to make software for designer 
                             and artist to make their jobs better even if its just a little bit. 
                             To do that i have these skills to make those applications a reality.
                         </p>
@@ -88,18 +85,19 @@
                 <div class="Divider">
                     <div class="SkillText">
                         <p class="TextFont">
-                            Hi There! I'm am Cornee Nieuwenhuis as you might have noticed by the homepage. 
-                            I'm from The Netherlands but have recently moved to Sweden for my current school PSQ. 
-                            At PSQ i have learned allot abot, not only game programming but also my social skills 
-                            and how to move futher into this market.
+                            Over my years of learning, moving and commumicating i have learned quite and array of languages.
+                            Both programming languages and human languages. I'm quite proud over the amount of them, 
+                            and as such will be focusing now more on becoming greater in every one them
                         </p>
                         <div class="SkillListingDivider">
                             <ul class="TextFont">
                                 <li>C++</li>
                                 <li>C#</li>
+                                <li>HLSL/GLSL</li>
                                 <li>Rust</li>
                                 <li>Python</li>
                                 <li>HTML/CSS</li>
+                                <li>Javascript</li>
                             </ul>
                             <ul class="TextFont">
                                 <li>English</li>
@@ -112,10 +110,8 @@
                     </div>
                     <div class="SkillText">
                         <p class="TextFont">
-                            Hi There! I'm am Cornee Nieuwenhuis as you might have noticed by the homepage. 
-                            I'm from The Netherlands but have recently moved to Sweden for my current school PSQ. 
-                            At PSQ i have learned allot abot, not only game programming but also my social skills 
-                            and how to move futher into this market.
+                            Here are some off my skills / strengths, while it is quite a display of skill i always seek to improve myself,
+                            not only as a developer but also as a person. And im always willing to prove myself of these skills no matter what the barrier could be.
                         </p>
                         
                         <div class="SkillListingDivider">

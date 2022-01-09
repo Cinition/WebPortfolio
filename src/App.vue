@@ -32,7 +32,6 @@ export default {
     body {
         height: 100vh;
         margin: 0;
-        --ScrollbarWidth: calc(100vw - 100%);
     }
 
     .TitleFont {
