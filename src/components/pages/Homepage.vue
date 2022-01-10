@@ -2,15 +2,23 @@
     <div class="Vertical">
         <div class="Horizontal TitleFont">
             <div class="IntroList" v-if="this.screenWidth >= 1500">
-                <span class="Intro">Hi, <br> I am</span>
-                <span class="Name">Cornee Nieuwenhuis</span>
-                <span class="Titles">Tools Engineer - Graphics Engineer</span>
+                <div class="RelativeHolder" id="Intro">
+                    <span v-bind:class="{Hi: this.IntroTextAnimation}" class="Intro">Hi,</span>
+                    <span v-bind:class="{Iam: this.IntroTextAnimation}" class="Intro">I am</span>
+                </div>
+                <div class="RelativeHolder" style="z-index: 4; padding-bottom:15px">
+                    <div class="AnimationSwish" v-bind:class="{StartAnimation: this.AnimationHolder.NameSwishStart, EndAnimation: this.AnimationHolder.NameSwishEnd}"></div>
+                    <span class="Name" v-bind:class="{Intro: !this.NameTextVisible}">Cornee Nieuwenhuis</span>
+                </div>
+                <div class="RelativeHolder">
+                    <span class="Titles" v-bind:class="{Visible : this.TitlesTextVisible}">Tools Engineer - Graphics Engineer</span>
+                </div>
             </div>
             <div class="IntroList" v-else>
                 
                 <div class="RelativeHolder" id="Intro">
-                    <span id="Hi" class="Intro" v-bind:class="{Phone : this.screenWidth <= 500, Tablet : this.screenWidth <= 1500 && this.screenWidth > 500}">Hi,</span>
-                    <span id="Iam" class="Intro" v-bind:class="{Phone : this.screenWidth <= 500, Tablet : this.screenWidth <= 1500 && this.screenWidth > 500}">I am</span>
+                    <span class="Intro" v-bind:class="{Hi: this.IntroTextAnimation, Phone : this.screenWidth <= 500, Tablet : this.screenWidth <= 1500 && this.screenWidth > 500}">Hi,</span>
+                    <span class="Intro" v-bind:class="{Iam: this.IntroTextAnimation, Phone : this.screenWidth <= 500, Tablet : this.screenWidth <= 1500 && this.screenWidth > 500}">I am</span>
                 </div>
                 <div class="RelativeHolder" style="z-index: 4; padding-bottom:15px">
                     <div class="AnimationSwish" v-bind:class="{StartAnimation: this.AnimationHolder.NameSwishStart, EndAnimation: this.AnimationHolder.NameSwishEnd}"></div>
@@ -32,9 +40,10 @@ export default {
     },
     data() {
         return {
+            IntroTextAnimation: false,
             SmallerScreen: false,
-            NameTextVisible: false,
-            TitlesTextVisible: false,
+            NameTextVisible: true,
+            TitlesTextVisible: true,
             screenWidth: Math.max(document.body.scrollWidth,document.documentElement.scrollWidth,document.body.offsetWidth,document.documentElement.offsetWidth,document.documentElement.clientWidth),
             AnimationHolder: {NameSwishStart: false, NameSwishEnd: false, }
         }
@@ -64,10 +73,15 @@ export default {
             }, 900)
         }
     },
-    mounted () {
+    beforeMount() {
         if (this.DoAnimation) {
+            this.IntroTextAnimation = true;
+            this.NameTextVisible = false;
+            this.TitlesTextVisible = false;
             this.IntroAnimation();
         }
+    },
+    mounted () {
         window.addEventListener("resize", this.ResizeHandler);
     }
 }
@@ -97,6 +111,7 @@ export default {
     }
 
     .Intro {
+        position: relative;
         line-height: 100px;
         font-size: 100px;
         color: var(--Text);
@@ -197,7 +212,11 @@ export default {
         to { left: 100%;}
     }
 
-    #Hi::after {
+
+    .Hi {
+        max-width: 120px;
+    }
+    .Hi::after {
         position: absolute;
         left: 0;
         content: "";
@@ -205,10 +224,13 @@ export default {
         background-color: var(--PrimaryBackground);
         width: 100%;
         animation: 
-            typing 0.75s steps(6, end) forwards;
+            typing 0.35s steps(3, end) forwards;
     }
 
-    #Iam::after {
+    .Iam {
+        max-width: 210px;
+    }
+    .Iam::after {
         position: absolute;
         left: 0;
         content: "";
@@ -216,8 +238,8 @@ export default {
         background-color: var(--PrimaryBackground);
         width: 100%;
         animation: 
-            typing 0.75s steps(8, end) forwards;
-        animation-delay: 0.6s;
+            typing 0.6s steps(8, end) forwards;
+        animation-delay: 0.4s;
     }
 
 </style>
