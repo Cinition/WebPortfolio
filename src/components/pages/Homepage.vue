@@ -7,7 +7,11 @@
                 <span class="Titles">Tools Engineer - Graphics Engineer</span>
             </div>
             <div class="IntroList" v-else>
-                <span class="Intro" v-bind:class="{Phone : this.screenWidth <= 500, Tablet : this.screenWidth <= 1500 && this.screenWidth > 500}">Hi, <br> I am</span>
+                
+                <div class="RelativeHolder" id="Intro">
+                    <span class="Intro" v-bind:class="{Phone : this.screenWidth <= 500, Tablet : this.screenWidth <= 1500 && this.screenWidth > 500}">Hi,</span>
+                    <span class="Intro" v-bind:class="{Phone : this.screenWidth <= 500, Tablet : this.screenWidth <= 1500 && this.screenWidth > 500}">I am</span>
+                </div>
                 <div class="RelativeHolder" style="z-index: 4; padding-bottom:15px">
                     <div class="AnimationSwish" v-bind:class="{StartAnimation: this.AnimationHolder.NameSwishStart, EndAnimation: this.AnimationHolder.NameSwishEnd}"></div>
                     <span class="Name" v-bind:class="{Phone : this.screenWidth <= 500, Tablet : this.screenWidth <= 1500 && this.screenWidth > 500, Intro: !this.NameTextVisible}">Cornee</span>
@@ -106,6 +110,11 @@ export default {
         position: relative;
         width: 100%;
         background-color: var(--PrimaryBackground);
+    }
+    #Intro.RelativeHolder {
+        display: flex;
+        flex-direction: column;
+        justify-content: left;
     }
 
     .AnimationSwish {
