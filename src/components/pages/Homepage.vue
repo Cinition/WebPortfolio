@@ -9,8 +9,8 @@
             <div class="IntroList" v-else>
                 
                 <div class="RelativeHolder" id="Intro">
-                    <span class="Intro" v-bind:class="{Phone : this.screenWidth <= 500, Tablet : this.screenWidth <= 1500 && this.screenWidth > 500}">Hi,</span>
-                    <span class="Intro" v-bind:class="{Phone : this.screenWidth <= 500, Tablet : this.screenWidth <= 1500 && this.screenWidth > 500}">I am</span>
+                    <span id="Hi" class="Intro" v-bind:class="{Phone : this.screenWidth <= 500, Tablet : this.screenWidth <= 1500 && this.screenWidth > 500}">Hi,</span>
+                    <span id="Iam" class="Intro" v-bind:class="{Phone : this.screenWidth <= 500, Tablet : this.screenWidth <= 1500 && this.screenWidth > 500}">I am</span>
                 </div>
                 <div class="RelativeHolder" style="z-index: 4; padding-bottom:15px">
                     <div class="AnimationSwish" v-bind:class="{StartAnimation: this.AnimationHolder.NameSwishStart, EndAnimation: this.AnimationHolder.NameSwishEnd}"></div>
@@ -56,12 +56,12 @@ export default {
                     this.AnimationHolder.NameSwishStart = false; 
                     this.NameTextVisible = true; 
                     this.AnimationHolder.NameSwishEnd = true; 
+                    this.TitlesTextVisible = true;
                     setTimeout(() => {
                         this.AnimationHolder.NameSwishEnd = false;
-                        this.TitlesTextVisible = true;
                     }, 750)
                 }, 750)
-            }, 100)
+            }, 900)
         }
     },
     mounted () {
@@ -190,6 +190,34 @@ export default {
         transition: top 0.75s, color 1.5s;
         color: var(--Text);
         top: 0;
+    }
+
+    @keyframes typing {
+        from {left: 0;}
+        to { left: 100%;}
+    }
+
+    #Hi::after {
+        position: absolute;
+        left: 0;
+        content: "";
+        height: 100%;
+        background-color: var(--PrimaryBackground);
+        width: 100%;
+        animation: 
+            typing 0.75s steps(6, end) forwards;
+    }
+
+    #Iam::after {
+        position: absolute;
+        left: 0;
+        content: "";
+        height: 100%;
+        background-color: var(--PrimaryBackground);
+        width: 100%;
+        animation: 
+            typing 0.75s steps(8, end) forwards;
+        animation-delay: 0.6s;
     }
 
 </style>
