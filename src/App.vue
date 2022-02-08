@@ -24,7 +24,7 @@ export default {
     },
     mounted () {
 		if (this.RequestCV) {
-			window.open("../../assets/CV.pdf", '_self', 'fullscreen=yes');
+			//window.open("../../assets/CV.pdf", '_self', 'fullscreen=yes');
 		}
     },
     methods: {
