@@ -3,13 +3,14 @@
 		<Screen/>
 	</div>
 	<div v-else>
-		<vue-pdf-app pdf="CV.pdf" @open="openHandler"></vue-pdf-app>
+		<!-- TODO Add top border for download button, logo and maybe some other information about the pdf -->
+		<pdf src="./CV.pdf" :page="1"></pdf>
 	</div>
 </template>
 
 <script>
 import Screen from './components/Screen.vue'
-import VuePdfApp from 'vue-pdf-app'
+import pdf from 'pdfvuer'
 
 export default {
     name: 'App',
@@ -20,7 +21,7 @@ export default {
     },
     components: {
 		Screen,
-		VuePdfApp
+		pdf
     },
     created () {
         document.title = "Cornee Nieuwenhuis";
@@ -47,9 +48,6 @@ export default {
 			}
 			return returnvalue;
         },
-		openHandler(pdfApp) {
-			window._pdfApp = pdfApp;
-		},
     }
 }
 </script>
