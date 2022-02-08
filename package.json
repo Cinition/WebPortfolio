@@ -11,6 +11,7 @@
     "@zhuowenli/vue-feather-icons": "^5.0.2",
     "core-js": "^3.6.5",
     "vue": "^3.0.0",
+    "vue-pdf-app": "^2.1.0",
     "vue-screen-size": "^1.0.1"
   },
   "devDependencies": {

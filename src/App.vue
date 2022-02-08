@@ -1,13 +1,15 @@
 <template>
-    <div v-if="this.CvParam === false">
-        <Screen/>
-    </div>
-    <div v-else >
-    </div>
+	<div v-if="CvParam === false">
+		<Screen/>
+	</div>
+	<div v-else>
+		<vue-pdf-app pdf="CV.pdf" @open="openHandler"></vue-pdf-app>
+	</div>
 </template>
 
 <script>
 import Screen from './components/Screen.vue'
+import VuePdfApp from 'vue-pdf-app'
 
 export default {
     name: 'App',
@@ -17,18 +19,19 @@ export default {
       }
     },
     components: {
-        Screen
+		Screen,
+		VuePdfApp
     },
     created () {
         document.title = "Cornee Nieuwenhuis";
     },
     mounted () {
-		if (this.RequestCV) {
-			//window.open("../../assets/CV.pdf", '_self', 'fullscreen=yes');
-		}
+		console.log(this.RequestCV())
+		this.CvParam = this.RequestCV();
     },
     methods: {
         RequestCV() {
+			let returnvalue = false;
 			let uri = window.location.href.split('?');
 			if(uri.length === 2) {
 				let vars = uri[1].split('&');
@@ -37,13 +40,16 @@ export default {
 					tmp = v.split('=');
 					if(tmp.length === 2 && tmp[0] === "CV") {
 						if (tmp[1].toString() === "true") {
-							return false;
+							returnvalue = true;
 						}
 					}
 				});
 			}
-			return false;
-        }
+			return returnvalue;
+        },
+		openHandler(pdfApp) {
+			window._pdfApp = pdfApp;
+		},
     }
 }
 </script>
