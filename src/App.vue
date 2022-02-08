@@ -1,5 +1,9 @@
 <template>
-    <Screen/>
+    <div v-if="this.CvParam === false">
+        <Screen/>
+    </div>
+    <div v-else >
+    </div>
 </template>
 
 <script>
@@ -7,11 +11,39 @@ import Screen from './components/Screen.vue'
 
 export default {
     name: 'App',
+    data() {
+      return{
+        CvParam: false
+      }
+    },
     components: {
         Screen
     },
     created () {
         document.title = "Cornee Nieuwenhuis";
+    },
+    mounted () {
+		if (this.RequestCV) {
+			window.open("../../assets/CV.pdf", '_self', 'fullscreen=yes');
+		}
+    },
+    methods: {
+        RequestCV() {
+			let uri = window.location.href.split('?');
+			if(uri.length === 2) {
+				let vars = uri[1].split('&');
+				let tmp = '';
+				vars.forEach(function(v) {
+					tmp = v.split('=');
+					if(tmp.length === 2 && tmp[0] === "CV") {
+						if (tmp[1].toString() === "true") {
+							return false;
+						}
+					}
+				});
+			}
+			return false;
+        }
     }
 }
 </script>
@@ -35,10 +67,10 @@ export default {
     }
 
     .TitleFont {
-        font-family: Quicksand;
+        font-family: Quicksand, sans-serif;
     }
     .TextFont {
-        font-family: Montserrat;
+        font-family: Montserrat, sans-serif;
     }
 
     .Title {
