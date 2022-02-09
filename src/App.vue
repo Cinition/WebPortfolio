@@ -3,14 +3,13 @@
 		<Screen/>
 	</div>
 	<div v-else>
-		<!-- TODO Add top border for download button, logo and maybe some other information about the pdf -->
-		<pdf src="./CV.pdf" :page="1"></pdf>
+		<CV/>
 	</div>
 </template>
 
 <script>
 import Screen from './components/Screen.vue'
-import pdf from 'pdfvuer'
+import CV from './components/CV.vue'
 
 export default {
     name: 'App',
@@ -21,7 +20,7 @@ export default {
     },
     components: {
 		Screen,
-		pdf
+		CV
     },
     created () {
         document.title = "Cornee Nieuwenhuis";
