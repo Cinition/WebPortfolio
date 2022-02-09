@@ -84,5 +84,8 @@ export default {
 		padding: 2.5% 5%;
 		overflow-y: auto;
 	}
+	.PdfContainer div {
+		max-width: 1100px;
+	}
 
 </style>
