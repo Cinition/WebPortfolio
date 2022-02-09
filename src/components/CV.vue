@@ -8,7 +8,7 @@
 			</div>
 		</div>
 		<div class="PdfContainer">
-			<pdf src="./CV.pdf" :page="1" resize="true" style="width: 100%; height: 99.8%"></pdf>
+			<pdf src="./CV.pdf" :page="1" resize="true" style="width: 100%"></pdf>
 		</div>
 	</div>
 </template>
