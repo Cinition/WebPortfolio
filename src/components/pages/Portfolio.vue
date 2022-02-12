@@ -43,16 +43,17 @@ export default {
         },
         ResizeHandler() {
             this.screenWidth = Math.max(
-            document.body.scrollWidth,
-            document.documentElement.scrollWidth,
-            document.body.offsetWidth,
-            document.documentElement.offsetWidth,
-            document.documentElement.clientWidth,
+				document.body.scrollWidth,
+				document.documentElement.scrollWidth,
+				document.body.offsetWidth,
+				document.documentElement.offsetWidth,
+				document.documentElement.clientWidth,
             );
         }
     },
     mounted () {
-        window.addEventListener("resize", this.ResizeHandler);
+		window.addEventListener("resize", this.ResizeHandler);
+		document.getElementById("List").addEventListener("scroll", this.handleScroll);
     }
 }
 </script>
@@ -74,6 +75,7 @@ export default {
         width: calc(100% - 17px);
         background-color: var(--PrimaryBackground);
         z-index: 7;
+		clip-path: inset(0 0px -50px -5px);
     }
     .OverflowHidder.Phone::after{
         height: 100px;
