@@ -33,7 +33,6 @@ export default {
 	.Container {
 		background-color: var(--PrimaryBackground);
 		box-sizing: border-box;
-		height: 100%;
 	}
 
 	.Header {
@@ -58,6 +57,9 @@ export default {
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
+	}
+	.Items h2 {
+		color: var(--Text);
 	}
 	@media screen and (max-width: 1100px) {
 		.Items {

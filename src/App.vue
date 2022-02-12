@@ -65,6 +65,7 @@ export default {
     }
 
     body {
+		background-color: var(--PrimaryBackground);
         height: 100vh;
         margin: 0;
     }
