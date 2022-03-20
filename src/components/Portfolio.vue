@@ -22,7 +22,7 @@
 </template>
 <script>
 
-import PortfolioData from "../../assets/PortfolioProjects.json";
+import PortfolioData from "../assets/PortfolioProjects.json";
 
 export default {
     name: 'Portfolio',

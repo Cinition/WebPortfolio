@@ -13,10 +13,10 @@
 </template>
 <script>
 
-import Navbar from './Navbar.vue'
-import Homepage from './pages/Homepage.vue'
-import AboutMe from './pages/AboutMe.vue'
-import Portfolio from './pages/Portfolio.vue'
+import Navbar from '../components/Navbar.vue'
+import Homepage from '../components/Homepage.vue'
+import AboutMe from '../components/AboutMe.vue'
+import Portfolio from '../components/Portfolio.vue'
 
 export default {
     name: 'Screen',

@@ -1,15 +1,8 @@
 <template>
-	<div v-if="CvParam === false">
-		<Screen/>
-	</div>
-	<div v-else>
-		<CV/>
-	</div>
+    <router-view/>
 </template>
 
 <script>
-import Screen from './components/Screen.vue'
-import CV from './components/CV.vue'
 
 export default {
     name: 'App',
@@ -18,34 +11,32 @@ export default {
         CvParam: false
       }
     },
-    components: {
-		Screen,
-		CV
-    },
     created () {
         document.title = "Cornee Nieuwenhuis";
     },
     mounted () {
-		console.log(this.RequestCV())
-		this.CvParam = this.RequestCV();
+        const CVRequest = this.RequestCV();
+        if (CVRequest) {
+            this.$router.push('/CV')
+        }
     },
     methods: {
         RequestCV() {
-			let returnvalue = false;
-			let uri = window.location.href.split('?');
-			if(uri.length === 2) {
-				let vars = uri[1].split('&');
-				let tmp = '';
-				vars.forEach(function(v) {
-					tmp = v.split('=');
-					if(tmp.length === 2 && tmp[0] === "CV") {
-						if (tmp[1].toString() === "true") {
-							returnvalue = true;
-						}
-					}
-				});
-			}
-			return returnvalue;
+            let returnvalue = false;
+            let uri = window.location.href.split('?');
+            if(uri.length === 2) {
+                let vars = uri[1].split('&');
+                let tmp = '';
+                vars.forEach(function(v) {
+                    tmp = v.split('=');
+                    if(tmp.length === 2 && tmp[0] === "CV") {
+                        if (tmp[1].toString() === "true") {
+                            returnvalue = true;
+                        }
+                    }
+                });
+            }
+            return returnvalue;
         },
     }
 }
@@ -65,7 +56,7 @@ export default {
     }
 
     body {
-		background-color: var(--PrimaryBackground);
+        background-color: var(--PrimaryBackground);
         height: 100vh;
         margin: 0;
     }

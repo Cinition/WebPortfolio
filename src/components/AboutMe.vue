@@ -5,7 +5,7 @@
     <div id="Page">
         <div class="CompactMe" v-if="this.screenWidth <= 1500">
             <p class="CompactTitle TitleFont" v-bind:class="{Phone: this.screenWidth <= 500}">Who am I?</p>
-            <img src="../../assets/Me.jpg" alt="Picture of me" v-bind:class="{Phone: this.screenWidth <= 500}">
+            <img src="../assets/Me.jpg" alt="Picture of me" v-bind:class="{Phone: this.screenWidth <= 500}">
             <p class="CompactText TextFont">
                 Hi There! I'm am Cornee Nieuwenhuis as you might have noticed by the homepage. 
                 I'm from The Netherlands but have recently moved to Sweden for my current school PSQ. 
@@ -115,7 +115,7 @@
                         </p>
                     </div>
                     <div class="Image">
-                        <img src="../../assets/Me.jpg" alt="Picture of me">
+                        <img src="../assets/Me.jpg" alt="Picture of me">
                     </div>
                 </div>
             </div>

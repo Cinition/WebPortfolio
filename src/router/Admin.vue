@@ -1,0 +1,178 @@
+<template>
+    <div v-if="!this.LoggedIn" class="HorizontalCenter">
+        <div class="VerticalCenter">
+            <div class="LoginScreen">
+                <img src="../assets/Logo.svg" alt="Logo">
+                <input v-model="Username" class="TitleFont" type="text" name="Username" id="username" placeholder="Username">
+                <input v-model="Password" class="TitleFont" type="password" name="Password" id="password" placeholder="Password">
+                <input class="TitleFont" type="submit" value="Login" v-on:click.prevent="SubmitLogin">
+            </div>
+            <p class="ErrorMessage TextFont" v-bind:class="{NoError: this.Message == ''}">
+                {{this.Message}}
+            </p>
+        </div>
+    </div>
+    <div v-else>
+        <div class="AdminNav">
+            <img src="../assets/Logo.svg" alt="Logo">
+            <p class="TitleFont" v-on:click="this.AdminNavClick(1)" v-bind:class="{Active: this.AdminNav == 1}" >Traffic</p>
+            <p class="TitleFont" v-on:click="this.AdminNavClick(2)" v-bind:class="{Active: this.AdminNav == 2}">Portfolio</p>
+            <button class="Logout"><LogOutIcon/></button>
+        </div>
+        <div v-if="this.AdminNav == 1">
+            <canvas></canvas>
+            <div class="TrafficInfo"></div>
+        </div>
+    </div>
+</template>
+
+<script>
+
+import {LogOutIcon} from "@zhuowenli/vue-feather-icons"
+
+export default {
+    name: 'Admin',
+    components: {
+        LogOutIcon
+    },
+    data() {
+        return {
+            LoggedIn: false,
+            Username: "",
+            Password: "",
+            Message: '',
+            AdminNav: 1
+        }
+    },
+    methods: {
+        SubmitLogin() {
+            this.axios.post("http://178.251.25.147:3000/login", {"user":this.Username,"pass":this.Password})
+                .then((response) => {
+                    if (response.data.error == true) {
+                        this.Message = response.data.message;
+                        console.log(this.Message)
+                    }
+                    else {
+                        this.LoggedIn = true;
+                    }
+                }).catch((error) => {
+                    console.log(error)
+                })
+        },
+
+        AdminNavClick(id) {
+            this.AdminNav = id;
+        }
+    }
+}
+
+</script>
+
+<style scoped>
+
+    .HorizontalCenter {
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .VerticalCenter {
+        height: 100%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    .LoginScreen {
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        background-color: var(--SecondaryBackground);
+        box-shadow: 0 0 20px 5px var(--DropShadow);
+        margin-bottom: 50px;
+        z-index: 2;
+    }
+    .LoginScreen img {
+        width: 75px;
+        margin: 0 auto;
+    }
+    .LoginScreen input {
+        transition: background-color 0.2s, color 0.2s;
+        margin: 25px 0 0;
+        height: 35px;
+        border: 2px solid var(--PrimaryColor);
+        background-color: var(--PrimaryBackground);
+        width: 200px;
+        color: var(--Text);
+        font-size: 18px;
+    }
+    .LoginScreen input[type="submit"] {
+        width: 150px;
+        margin: 25px auto 0;
+    }
+    .LoginScreen input[type="submit"]:hover {
+        cursor: pointer;
+    }
+    .LoginScreen input[type="submit"]:hover {
+        background-color: var(--PrimaryColor);
+        color: var(--PrimaryBackground);
+    }
+
+    .ErrorMessage {
+        transition: margin-top 0.5s, opacity 0.5s;
+        position: absolute;
+        width: 100%;
+        margin-top: 400px;
+        padding: 20px 0;
+        text-align: center;
+        opacity: 1;
+        color: var(--Text);
+        background-color: var(--SecondaryBackground);
+        box-shadow: 0 0 20px 5px var(--DropShadow);
+    }
+    .ErrorMessage.NoError {
+        margin-top: 200px;
+        opacity: 0;
+    }
+
+    .AdminNav {
+        height: 75px;
+        width: 100%;
+        padding: 0 50px;
+        background-color: var(--SecondaryBackground);
+        box-shadow: 0 10px 10px 5px var(--DropShadow);
+        display: flex;
+        flex-direction: row;
+        box-sizing: border-box;
+        align-items: center;
+    }
+    .AdminNav img {
+        width: 60px;
+        margin-right: 25px;
+    }
+    .AdminNav p {
+        transition: background-color 0.2s;
+        background-color: var(--SecondaryBackground);
+        color: var(--Text);
+        font-size: 20px;
+        height: 100%;
+        line-height: 75px;
+        padding: 0 35px;
+    }
+    .AdminNav p:hover {
+        cursor: pointer;
+        background-color: var(--PrimaryBackground);
+    }
+    .AdminNav p.Active {
+        background-color: var(--PrimaryBackground);
+        text-decoration: underline var(--Text);
+    }
+
+    .AdminNav .Logout {
+        margin-left: auto;
+    }
+
+</style>
