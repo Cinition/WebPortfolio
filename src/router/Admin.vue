@@ -46,7 +46,7 @@ export default {
     },
     methods: {
         SubmitLogin() {
-            this.axios.post("http://178.251.25.147:3000/login", {"user":this.Username,"pass":this.Password})
+            this.axios.post("https://178.251.25.147:3000/login", {"user":this.Username,"pass":this.Password})
                 .then((response) => {
                     if (response.data.error == true) {
                         this.Message = response.data.message;
