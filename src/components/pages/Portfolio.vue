@@ -2,16 +2,16 @@
     <span class="Title TitleFont" v-bind:class="{Phone: this.screenWidth <= 500}">Some of my work</span>
     <div class="OverflowHidder" v-bind:class="{Shadow: this.atTop == false, Phone: this.screenWidth <= 500}"></div>
     <div class="PortfolioList" id="List" v-bind:class="{Phone: this.screenWidth <= 500}">
-        <div class="PortfolioItem" v-for="project in Data" :key="project" v-bind:class="{md: this.screenWidth <= 1500 , Phone: this.screenWidth <= 500}">
+        <div class="PortfolioItem" v-for="project in Data" :key="project" v-bind:class="{md: this.screenWidth <= 1500, Phone: this.screenWidth <= 500, Single: project.Video == '' && project.Image == ''}">
             <p v-if="this.screenWidth <= 1500" class="PortfolioTitle TitleFont" v-bind:class="{Phone: this.screenWidth <= 500}">{{project.Name}}</p>
-            <div class="PortfolioImage" v-bind:class="{md : this.screenWidth <= 1500}">
+            <div v-if="project.Video != '' || project.Image != ''" class="PortfolioImage" v-bind:class="{md : this.screenWidth <= 1500}">
                 <div class="PortfolioVideo" v-if="project.Video != ''">
                     <iframe :src="project.Video" :title="project.Name" frameborder="0"></iframe>
                 </div>
                 <img v-else-if="project.Image != ''" :src="require('@/assets/PortfolioImg/'+project.Image)">
             </div>
-            <div class="PortfolioText TextFont" v-bind:class="{md : this.screenWidth <= 1500, Phone: this.screenWidth <= 500}">
-                <p v-if="this.screenWidth > 1500" class="PortfolioTitle TitleFont">{{project.Name}}</p>
+            <div class="PortfolioText TextFont" v-bind:class="{md : this.screenWidth <= 1500, Phone: this.screenWidth <= 500, Single: project.Video == '' && project.Image == ''}">
+                <h1 v-if="this.screenWidth > 1500" class="PortfolioTitle TitleFont">{{project.Name}}</h1>
                 <p v-for="Page in project.Page" :key="Page">
                     {{Page.Text}}
                 </p>
@@ -121,6 +121,10 @@ export default {
     .PortfolioItem.Phone {
         width: 95%;
     }
+    .PortfolioItem.Single {
+        justify-content: center;
+        text-align: center;
+    }
 
     .PortfolioImage {
         width: 50%;
@@ -176,10 +180,14 @@ export default {
     .PortfolioText.md {
         width: 80%;
     }
+    .PortfolioText.Single {
+        width: 60%;
+    }
 
     .PortfolioTitle {
         width: 100%;
         text-align: center;
+        font-weight: 300;
         font-size: 40px;
         color: var(--PrimaryColor);
     }
