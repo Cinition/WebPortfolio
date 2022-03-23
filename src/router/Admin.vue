@@ -46,15 +46,26 @@ export default {
     },
     methods: {
         SubmitLogin() {
-            this.axios.post("https://178.251.25.147:3000/login", {"user":this.Username,"pass":this.Password})
+
+            var headers = {
+                'Content-Type': 'application/json',
+                'Access-Control-Request-Headers': '*',
+                'api-key': 'VLxsgxGto4D0hngX09giBsu4d0DlE9tTEjgxTLzVuoYjLQbEZUNzI61zSHwQkEOw'
+            };
+
+            var data = {
+                "collection": "login",
+                "database": "cornee_web_api",
+                "dataSource": "Cluster0",
+                "filter": {
+                    "username": this.username,
+                    "password": this.password
+                }
+            };
+
+            this.axios.post("https://data.mongodb-api.com/app/data-zelkx/endpoint/data/beta", data, { headers: headers,})
                 .then((response) => {
-                    if (response.data.error == true) {
-                        this.Message = response.data.message;
-                        console.log(this.Message)
-                    }
-                    else {
-                        this.LoggedIn = true;
-                    }
+                    console.log(response)
                 }).catch((error) => {
                     console.log(error)
                 })

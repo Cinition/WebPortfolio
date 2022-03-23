@@ -1,5 +1,5 @@
 module.exports = {
     devServer: {
-        proxy: 'https://178.251.25.147:3000'
+        proxy: 'https://data.mongodb-api.com/app/data-zelkx/endpoint/data/beta'
     }
 }
