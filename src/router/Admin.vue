@@ -50,6 +50,7 @@ export default {
             var headers = {
                 'Content-Type': 'application/json',
                 'Access-Control-Request-Headers': '*',
+                'Access-Control-Allow-Origin': '*',
                 'api-key': 'VLxsgxGto4D0hngX09giBsu4d0DlE9tTEjgxTLzVuoYjLQbEZUNzI61zSHwQkEOw'
             };
 
