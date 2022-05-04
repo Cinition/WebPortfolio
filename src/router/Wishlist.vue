@@ -5,8 +5,13 @@
             <h2 class="TextFont">Cornee</h2>
         </div>
         <div class="Items">
-            <div v-for="item in Data" :key="item">
-                <p>{{item.nr}}</p>
+            <div class="Item" v-for="item in Data" :key="item">
+                <p class="ItemNr TitleFont">{{item.nr}}</p>
+                <div class="ItemBody TextFont" @click="openURL(item.url)">
+                    <h1 class="ItemTitle">{{item.title}}</h1>
+                    <p class="ItemDesc">{{item.description}}</p>
+                    <a class="ItemLink">{{item.price}}</a>
+                </div>
             </div>
         </div>
     </div>
@@ -21,6 +26,11 @@ export default {
     data() {
         return {
             Data: WishlistData
+        }
+    },
+    methods: {
+        openURL( url ) {
+            window.open(url, '_blank').focus();
         }
     },
 }
@@ -50,10 +60,53 @@ export default {
     }
 
     .Items {
-        width: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .Item {
         display: flex;
         flex-direction: row;
-        justify-content: space-around;
+        margin-top: 40px;
+        align-items: center;
+    }
+
+    .ItemNr {
+        height: 50px;
+        width: 50px;
+        text-align: center;
+        line-height: 50px;
+        background-color: var(--SecondaryBackground);
+        color: var(--PrimaryColor);
+        font-size: 35px;
+        margin: 0 30px 0 0;
+        padding: 0;
+    }
+
+    .ItemBody{
+        background-color: var(--SecondaryBackground);
+        color: var(--Text);
+        padding: 10px;
+        border: 2px solid var(--SecondaryBackground);
+    }
+    .ItemBody:hover {
+        border: 2px solid var(--PrimaryColor);
+        cursor: pointer;
+    }
+    .ItemBody h1 {
+        padding: 0;
+        margin: 0;
+        color: var(--PrimaryColor);
+    }
+    .ItemBody p {
+        padding: 0;
+        margin: 10px 0;
+    }
+    .ItemBody a {
+        padding: 0;
+        margin: 0;
+        text-decoration: none;
     }
 
 </style>
