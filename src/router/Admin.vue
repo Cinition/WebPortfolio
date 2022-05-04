@@ -1,4 +1,5 @@
 <template>
+    <!-- Login -->
     <div v-if="!this.LoggedIn" class="HorizontalCenter">
         <div class="VerticalCenter">
             <div class="LoginScreen">
@@ -12,18 +13,28 @@
             </p>
         </div>
     </div>
+
+    <!-- ADMIN PANEL -->
     <div v-else>
         <div class="AdminNav">
             <img src="../assets/Logo.svg" alt="Logo">
             <p class="TitleFont" v-on:click="this.AdminNavClick(1)" v-bind:class="{Active: this.AdminNav == 1}" >Traffic</p>
             <p class="TitleFont" v-on:click="this.AdminNavClick(2)" v-bind:class="{Active: this.AdminNav == 2}">Portfolio</p>
-            <button class="Logout"><LogOutIcon/></button>
+            <p class="TitleFont" v-on:click="this.AdminNavClick(3)" v-bind:class="{Active: this.AdminNav == 3}">Forms</p>
+            <button class="Logout" v-on:click="this.LoggedIn = false" ><LogOutIcon/></button>
         </div>
+
         <div v-if="this.AdminNav == 1">
             <canvas></canvas>
             <div class="TrafficInfo"></div>
         </div>
+
+        <div v-if="this.AdminNav == 3">
+            <div class="TrafficInfo"></div>
+        </div>
+
     </div>
+
 </template>
 
 <script>
@@ -46,6 +57,8 @@ export default {
     },
     methods: {
         SubmitLogin() {
+
+            this.LoggedIn = true;
 
             var headers = {
                 'Content-Type': 'application/json',
@@ -132,6 +145,7 @@ export default {
         background-color: var(--PrimaryColor);
         color: var(--PrimaryBackground);
     }
+    .LogoutButton
 
     .ErrorMessage {
         transition: margin-top 0.5s, opacity 0.5s;
@@ -184,7 +198,23 @@ export default {
     }
 
     .AdminNav .Logout {
+        width: 50px;
+        height: 50px;
+        padding: 3px 0 0 0;
+        transition: background-color 0.2s;
+        border-radius: 25px;
         margin-left: auto;
+        border: 0;
+        color: var(--Text);
+        background-color: var(--SecondaryBackground);
+    }
+    .AdminNav .Logout:hover {
+        cursor: pointer;
+        background-color: var(--PrimaryBackground);
+    }
+    .AdminNav .Logout svg {
+        width: 25px;
+        height: 25px;
     }
 
 </style>

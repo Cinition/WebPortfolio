@@ -3,6 +3,8 @@ import { createRouter, createWebHistory} from "vue-router";
 import Screen from "./Screen.vue"
 import Admin from "./Admin.vue"
 import CV from "./CV.vue"
+import Form from "./Form.vue"
+import Wishlist from "./Wishlist.vue"
 
 const router = createRouter({
     history: createWebHistory(),
@@ -18,6 +20,14 @@ const router = createRouter({
         {
             path: '/CV',
             component: CV,
+        },
+        {
+            path: '/Form',
+            component: Form,
+        },
+        {
+            path: '/Wishlist',
+            component: Wishlist,
         },
     ],
 })
