@@ -4,7 +4,10 @@ import Screen from "./Screen.vue"
 import Admin from "./Admin.vue"
 import CV from "./CV.vue"
 import Form from "./Form.vue"
-import Wishlist from "./Wishlist.vue"
+import SingularityMain from "./singularity/Main.vue"
+import SingularityDocs from "./singularity/Docs.vue"
+import SingularityBlog from "./singularity/Blog.vue"
+// import Wishlist from "./Wishlist.vue"
 
 const router = createRouter({
     history: createWebHistory(),
@@ -26,9 +29,21 @@ const router = createRouter({
             component: Form,
         },
         {
-            path: '/Wishlist',
-            component: Wishlist,
+            path: '/Singularity',
+            component: SingularityMain,
         },
+        {
+            path: '/Singularity/Docs',
+            component: SingularityDocs,
+        },
+        {
+            path: '/Singularity/Blog',
+            component: SingularityBlog,
+        }
+        // {
+        //     path: '/Wishlist',
+        //     component: Wishlist,
+        // },
     ],
 })
 
